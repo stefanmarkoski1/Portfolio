@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stefan Markoski | About</title>
+
+  <!-- SEO + Aesthetic Meta -->
+  <meta name="description" content="About Stefan Markoski — Designer & Developer focused on clean, functional digital experiences.">
+  <meta name="theme-color" content="#0b0e13">
+  <link rel="icon" type="image/png" href="Pictures/favicon.png">
+
+  <style>
+    :root {
+      --bg-dark: #0b0e13;
+      --bg-mid: #121722;
+      --accent: #f5a623;
+      --text-light: #ffffff;
+      --text-muted: #a1a1a1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: 'Inter', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    /* Background animation */
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(-45deg, #0b0e13, #121722, #1a2130, #f5a62333);
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+      color: var(--text-light);
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-mid);
+      padding: 1rem 2rem;
+      border-radius: 0 0 1.5rem 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin: 0 1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--text-muted);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 2rem;
+    }
+
+    /* About Section */
+    section.about-section {
+      background: rgba(18, 23, 34, 0.9);
+      border-radius: 1.5rem;
+      max-width: 900px;
+      width: 100%;
+      padding: 3rem 2rem;
+      text-align: left;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    section.about-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .about-section p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .about-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--bg-dark);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      border-top: 1px solid #333;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+      }
+      nav a {
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">SM | About</div>
+    <div>
+      <a href="index.html#projects">Projects</a> |
+<a href="index.html">
+  <img src="Pictures/Home.png" style="filter: invert(100%); width:23px; height:21px; vertical-align: middle; margin-right: 5px;">
+</a> |
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="about-section fade-in">
+      <h2>About Me</h2>
+      <p>
+        I’m Stefan Markoski, a designer and developer who loves turning ideas into clean, functional, and visually appealing digital experiences. 
+        I focus on responsive design, smooth user interactions, and code that is as efficient as it is elegant.
+      </p>
+      <p>
+        Outside of work, I explore design trends, experiment with new technologies, and build personal projects that push my skills further. 
+        I believe in lifelong learning and constantly improving to deliver work that makes an impact.
+      </p>
+
+      <div class="about-cards">
+        <div class="card">
+          <h3>Skills</h3><br>
+          <p>HTML, CSS, Java, C++, C, OOP, Laravel, UI/UX Design, AI Prompting</p>
+        </div>
+        <div class="card">
+          <h3>Interests</h3><br>
+          <p>Web development, Graphic design, Open source projects, Tech innovation</p>
+        </div>
+        <div class="card">
+          <h3>Education</h3><br>
+          <p>Bachelor of Science in Information Technology — Digital Business Analytics.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Stefan Markoski — All Rights Reserved
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Fade-in on scroll
+    const about = document.querySelector('.about-section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    observer.observe(about);
+
+    // Navbar blur on scroll
+    window.addEventListener("scroll", () => {
+      const nav = document.querySelector("nav");
+      if (window.scrollY > 50) {
+        nav.style.background = "rgba(18, 23, 34, 0.9)";
+        nav.style.backdropFilter = "blur(6px)";
+      } else {
+        nav.style.background = "var(--bg-mid)";
+        nav.style.backdropFilter = "none";
+      }
+    });
+  </script>
+</body>
+</html>

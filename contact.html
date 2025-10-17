@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stefan Markoski | Contact</title>
+  <meta name="description" content="Get in touch with Stefan Markoski — Designer & Developer focused on clean, functional digital experiences.">
+  <meta name="theme-color" content="#0b0e13">
+  <link rel="icon" type="image/png" href="Pictures/favicon.png">
+
+  <style>
+    :root {
+      --bg-dark: #0b0e13;
+      --bg-mid: #121722;
+      --accent: #f5a623;
+      --text-light: #ffffff;
+      --text-muted: #a1a1a1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: 'Inter', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    /* Background gradient animation */
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(-45deg, #0b0e13, #121722, #1a2130, #f5a62333);
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+      color: var(--text-light);
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-mid);
+      padding: 1rem 2rem;
+      border-radius: 0 0 1.5rem 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin: 0 1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--text-muted);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 2rem;
+    }
+
+    /* Contact Section */
+    section.contact-section {
+      background: rgba(18, 23, 34, 0.9);
+      border-radius: 1.5rem;
+      max-width: 800px;
+      width: 100%;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    section.contact-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-section p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    form.contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--accent);
+      transform: translateY(-1px);
+    }
+
+    button {
+      background: var(--accent);
+      color: #000;
+      font-weight: bold;
+      padding: 0.8rem 1.5rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    button:hover {
+      background: #ffbb33;
+      transform: translateY(-2px);
+    }
+
+    .contact-links-social {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 400px;
+      margin: 2rem auto 0;
+    }
+
+    .contact-links-social a {
+      display: block;
+      background: var(--accent);
+      color: #000;
+      padding: 0.8rem 1.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .contact-links-social a:hover {
+      background: #ffbb33;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      border-top: 1px solid #333;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+      }
+      nav a {
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">SM | Contact</div>
+    <div>
+      <a href="index.html#projects">Projects</a> |
+      <a href="about.html">About</a>|
+	        <a href="index.html">
+  <img src="Pictures/Home.png" style="filter: invert(100%); width:23px; height:21px; vertical-align: middle; margin-right: 5px;">
+</a>
+
+    </div>
+  </nav>
+
+  <main>
+    <section class="contact-section" id="contact">
+      <h2>Contact Me</h2>
+      <p>Feel free to reach out through the form below — I usually reply within a day.</p>
+      
+      <form action="https://formspree.io/f/xpwybkel" method="POST" class="contact-links">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="_replyto" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+      <p style="margin: 2rem 0 1rem;">Or connect with me directly:</p>
+      <div class="contact-links-social">
+        <a href="https://www.linkedin.com/in/stefan-m-8893762a9/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/stefanmarkoski1" target="_blank">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Stefan Markoski — All Rights Reserved
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Fade-in effect on scroll
+    const section = document.querySelector('.contact-section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    observer.observe(section);
+
+    // Navbar blur on scroll
+    window.addEventListener("scroll", () => {
+      const nav = document.querySelector("nav");
+      if (window.scrollY > 50) {
+        nav.style.background = "rgba(18, 23, 34, 0.9)";
+        nav.style.backdropFilter = "blur(6px)";
+      } else {
+        nav.style.background = "var(--bg-mid)";
+        nav.style.backdropFilter = "none";
+      }
+    });
+  </script>
+</body>
+</html>
