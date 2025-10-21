@@ -63,10 +63,22 @@
     }
 
     .logo {
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: 1px;
-    }
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 8px; /* optional, looks nicer */
+  filter: invert(1);
+
+}
 
     /* Nav links container */
     .nav-links {
@@ -203,7 +215,7 @@
 </head>
 <body>
   <nav>
-    <div class="logo">SM - About</div>
+    <div class="logo"><img src="Pictures\Logo.png"> - About</div>
 
     <!-- Desktop links -->
     <div class="nav-links" aria-hidden="false">
