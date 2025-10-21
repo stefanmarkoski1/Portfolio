@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="Pictures/favicon.png">
 <meta name="description" content="Portfolio of Stefan Markoski — Designer and Developer creating clean, functional digital experiences.">
 <meta name="theme-color" content="#0b0e13">
 
@@ -38,34 +37,111 @@
 		color: var(--text-light);
     }
 
+   /* Navbar */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: var(--bg-mid);
-      padding: 1rem 2rem;
+      padding: 1rem 1.5rem;
       border-radius: 0 0 1.5rem 1.5rem;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       position: sticky;
       top: 0;
       z-index: 100;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
     }
 
-    nav a {
-      color: var(--text-light);
-      text-decoration: none;
-      margin: 0 1rem;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--text-muted);
-    }
-	
-	.logo {
+    .logo {
       font-weight: 700;
       font-size: 1.1rem;
       letter-spacing: 1px;
+    }
+
+    /* Nav links container */
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.5rem;
+      transition: color 0.2s, background 0.2s, transform 0.12s;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-muted);
+      transform: translateY(-2px);
+    }
+
+    /* Hamburger button */
+    .hamburger {
+	 padding: 0 !important;
+      background: transparent;
+	box-shadow: none;
+      display: none; /* hidden on desktop */
+      border: none;
+      cursor: pointer;
+      width: 42px;
+      height: 36px;
+      position: relative;
+      z-index: 120;
+	  
+	  
+    }
+
+    .hamburger .bar {
+      display: block;
+      width: 100%;
+      height: 3px;
+      margin: 6px 0;
+      background: var(--text-light);
+      border-radius: 3px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    /* Mobile menu (hidden by default) */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      right: 1.5rem;
+      top: calc(100% + 10px);
+      background: rgba(18, 23, 34, 0.98);
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+      overflow: hidden;
+      min-width: 180px;
+      padding: 0.5rem 0;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .mobile-menu a:hover { background: rgba(255,255,255,0.02); color: var(--text-muted); }
+
+    /* Show hamburger + hide inline links on small screens */
+    @media (max-width: 880px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      nav { padding: 0.75rem 1rem; }
+    }
+
+    /* If mobile menu is open */
+    .mobile-menu.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .hero {
@@ -262,20 +338,39 @@
   </style>
 </head>
 <body>
-  <nav>
+
+<nav>
     <div class="logo">SM - Portfolio</div>
-    <div>
-    <div>
-      <a href="#projects">My Projects
-	</a>
-	  |
-      <a href="about.html">About Me
-	  </a>
-	  |
-	  <a href="contact.html">Contact
-	  </a>
+
+    <!-- Desktop links -->
+    <div class="nav-links" aria-hidden="false">
+      <a href="#projects">My Projects</a>
+      <a href="about.html">About Me</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Hamburger (right side) -->
+    <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <span class="bar" id="bar1"></span>
+      <span class="bar" id="bar2"></span>
+      <span class="bar" id="bar3"></span>
+    </button>
+
+    <!-- Mobile dropdown menu -->
+    <div class="mobile-menu" id="mobileMenu" role="menu" aria-hidden="true">
+      <a href="index.html#projects" role="menuitem">My Projects</a>
+      <a href="about.html" role="menuitem">About Me</a>
+      <a href="contact.html" role="menuitem">Contact</a>
     </div>
   </nav>
+  
+     
+  
+  
+  
+  
+  
+  
 
   <section class="hero" id="home">
 <div class="pfp fade-in-load">
@@ -384,6 +479,67 @@ document.addEventListener("DOMContentLoaded", function() {
       nav.style.backdropFilter = "none";
     }
   });
+});
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const bars = [
+  document.getElementById('bar1'),
+  document.getElementById('bar2'),
+  document.getElementById('bar3')
+];
+
+// Utility functions
+function openMenu() {
+  mobileMenu.classList.add('show');
+  hamburger.setAttribute('aria-expanded', 'true');
+  hamburger.setAttribute('aria-label', 'Close menu');
+  mobileMenu.setAttribute('aria-hidden', 'false');
+  bars[0].style.transform = 'translateY(9px) rotate(45deg)';
+  bars[1].style.opacity = '0';
+  bars[2].style.transform = 'translateY(-9px) rotate(-45deg)';
+}
+
+function closeMenu() {
+  mobileMenu.classList.remove('show');
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-label', 'Open menu');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  bars.forEach(bar => {
+    bar.style.transform = '';
+    bar.style.opacity = '';
+  });
+}
+
+// Toggle menu on click
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.contains('show') ? closeMenu() : openMenu();
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target) && mobileMenu.classList.contains('show')) {
+    closeMenu();
+  }
+});
+
+// Close menu when a link is clicked
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeMenu);
+});
+
+// Close menu with Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && mobileMenu.classList.contains('show')) {
+    closeMenu();
+  }
+});
+
+// Optional: Close menu on window resize if screen is large
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 880 && mobileMenu.classList.contains('show')) {
+    closeMenu();
+  }
 });
 </script>
 
