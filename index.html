@@ -26,10 +26,11 @@
 	
 	
 	@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+	}
+	
     body {
 		background: linear-gradient(-45deg, #0b0e13, #121722, #1a2130, #f5a62333);
 		background-size: 400% 400%;
@@ -83,7 +84,7 @@
     .hamburger {
 	 padding: 0 !important;
       background: transparent;
-	box-shadow: none;
+	  box-shadow: none;
       display: none; /* hidden on desktop */
       border: none;
       cursor: pointer;
@@ -91,8 +92,7 @@
       height: 36px;
       position: relative;
       z-index: 120;
-	  
-	  
+	  margin-left: auto; /* pushes hamburger to the far right */
     }
 
     .hamburger .bar {
@@ -199,12 +199,13 @@
     }
 	
 	.bio, .btn {
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-.bio.visible, .btn.visible {
-  opacity: 1;
-}
+	opacity: 0;
+	transition: opacity 0.8s ease;
+	}
+	
+	.bio.visible, .btn.visible {
+	opacity: 1;
+	}
 
 
     .btn {
@@ -218,8 +219,8 @@
       transition: transform 0.3s, background 0.3s;
 	  text-decoration: none; 
 	  display: inline-block; 
-	   position: relative;
-		overflow: hidden;
+	  position: relative;
+	  overflow: hidden;
     }
 
     .btn:hover {
@@ -228,18 +229,18 @@
     }
 	
 	
-.btn::after {
-  content: "";
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: rgba(255,255,255,0.2);
-  transition: left 0.3s ease;
-}
+	.btn::after {
+	  content: "";
+	  position: absolute;
+	  top: 0; left: -100%;
+	  width: 100%; height: 100%;
+	  background: rgba(255,255,255,0.2);
+	  transition: left 0.3s ease;
+	}
 
-.btn:hover::after {
-  left: 100%;
-}
+	.btn:hover::after {
+	  left: 100%;
+	}
     section {
       padding: 5rem 2rem;
       text-align: center;
@@ -282,9 +283,9 @@
     }
 	
 	.project:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-}
+	  transform: translateY(-5px);
+	  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+	}
 	
 	.projects-section p.intro {
 	 text-align: left;   /* aligns the text to the left */
@@ -292,26 +293,26 @@
 	}
 	
 	.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
+	  opacity: 0;
+	  transform: translateY(30px);
+	  transition: opacity 0.8s ease, transform 0.8s ease;
+	}
 
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+	.fade-in.visible {
+	  opacity: 1;
+	  transform: translateY(0);
+	}
 
-.fade-in-load {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
+	.fade-in-load {
+	  opacity: 0;
+	  transform: scale(0.9);
+	  transition: opacity 0.8s ease, transform 0.8s ease;
+	}
 
-.fade-in-load.visible {
-  opacity: 1;
-  transform: scale(1);
-}
+	.fade-in-load.visible {
+	  opacity: 1;
+	  transform: scale(1);
+	}
 
 
 
@@ -326,17 +327,16 @@
       .hero h1 {
         font-size: 2.2rem;
       }
-      nav {
-        flex-direction: column;
-      }
+     
       nav a {
         margin: 0.5rem 0;
       }
 	  
 
     }
-  </style>
+</style>
 </head>
+
 <body>
 
 <nav>
@@ -365,12 +365,6 @@
   </nav>
   
      
-  
-  
-  
-  
-  
-  
 
   <section class="hero" id="home">
 <div class="pfp fade-in-load">
