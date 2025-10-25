@@ -324,6 +324,38 @@
 	  opacity: 1;
 	  transform: scale(1);
 	}
+	
+	#scrollToTopBtn {
+	  position: fixed;
+	  bottom: 30px;
+	  right: 30px;
+	  z-index: 1000;
+	  background: #1a1a1a; /* match your dark background */
+	  color: #f0a500;       /* assume an accent color (you pick your actual accent) */
+	  border: none;
+	  border-radius: 50%;
+	  width: 48px;
+	  height: 48px;
+	  display: none;
+	  align-items: center;
+	  justify-content: center;
+	  cursor: pointer;
+	  transition: background 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+	  opacity: 0.8;
+	}
+
+	#scrollToTopBtn:hover {
+	  background: #333333;
+	  opacity: 1;
+	  transform: scale(1.1);
+	}
+
+	#scrollToTopBtn svg {
+	  stroke: currentColor;
+	  width: 24px;
+	  height: 24px;
+	}
+
 
 
 
@@ -381,8 +413,8 @@
 <div class="pfp fade-in-load">
       <img src="Pictures\1Me.jpg" alt="Stefan Markoski profile picture">
     </div>
-    <h2>Hey there! my name is <span>Stefan</span>.<br></h2>
-<p class="bio">I am a designer and developer passionate about blending clean design with functional experiences. I focus on creating fast, responsive, and visually sharp digital products.</p>
+    <h2>Hey there! My name is <span>Stefan</span>.<br></h2>
+<p class="bio">I am a web developer passionate about blending clean design with functional experiences. I focus on creating fast, responsive, and visually sharp digital products.</p>
 	<a href="contact.html" class="btn">Let's Connect</a>
   </section>
 
@@ -436,6 +468,12 @@
 	  
     </div>
   </section>
+  
+<button id="scrollToTopBtn" title="Go to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V3.707l3.147 3.147a.5.5 0 0 0 .708-.708l-4-4-.007-.007a.498.498 0 0 0-.7.007l-4 4a.5.5 0 0 0 .708.708L7.5 3.707V11.5A.5.5 0 0 0 8 12z"/>
+  </svg>
+</button>
 
   <footer>
     © <span id="year"></span> Stefan Markoski — All Rights Reserved
@@ -546,6 +584,21 @@ window.addEventListener('resize', () => {
     closeMenu();
   }
 });
+
+  const scrollBtn = document.getElementById("scrollToTopBtn");
+
+  window.onscroll = function() {
+    // Show button after scrolling down 100px
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      scrollBtn.style.display = "block";
+    } else {
+      scrollBtn.style.display = "none";
+    }
+  };
+
+  scrollBtn.addEventListener("click", function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 </script>
 
 </body>
