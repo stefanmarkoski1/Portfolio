@@ -11,26 +11,58 @@
 
   <style>
     :root {
-      --bg-dark: #0b0e13;
-      --bg-mid: #121722;
+      /* dark theme defaults */
+      --bg: linear-gradient(-45deg, #0b0e13, #121722, #1a2130, #f5a62333);
+      --page-bg-solid: #0b0e13;
+      --nav-bg: rgba(18,23,34,0.95);
+      --card-bg: rgba(18,23,34,0.9);
+      --menu-bg: rgba(18,23,34,0.98);
       --accent: #f5a623;
-      --text-light: #ffffff;
+      --text-primary: #ffffff;
       --text-muted: #a1a1a1;
+      --shadow: rgba(0, 0, 0, 0.3);
+      --transition-speed: 0.3s;
+      --nav-radius: 1.5rem;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-	  font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', 'Source Code Pro', monospace;
+    /* light mode overrides */
+    .light-mode {
+	  --bg: var(--page-bg-solid);
+	  --page-bg-solid: #f5f5f7;
+	  --nav-bg: rgba(8, 119, 194,0.7); 
+	  --nav-color: white;
+	  --card-bg: rgba(8, 119, 194,0.7);
+	  --menu-bg: rgba(8, 119, 194,0.9);
+	  --accent: #f5a623;
+	  --text-primary: #ffffff;
+	  --text-muted: #ffffff;
+	  --shadow: rgba(0,0,0,0.12);
+	}
+
+	/* move these OUTSIDE the block */
+	.light-mode nav,
+	.light-mode nav a,
+	.light-mode .nav-brand,
+	.light-mode .logo,
+	.light-mode .nav-links a i {
+	  color: var(--nav-color) !important;
+	}
+
+	.light-mode footer {
+		
+	  color: black;
+	}
+
+	.light-mode .card {
+	  background-color: rgba(8, 119, 194,0.8);
+	}
+
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth;
+      font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', 'Source Code Pro', monospace;
     }
 
-    html, body {
-      height: 100%;
-    }
+    html, body { height: 100%; }
 
-    /* Background animation */
     @keyframes gradientMove {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -40,11 +72,12 @@
     body {
       display: flex;
       flex-direction: column;
-      background: linear-gradient(-45deg, #0b0e13, #121722, #1a2130, #f5a62333);
+      background: var(--bg);
       background-size: 400% 400%;
       animation: gradientMove 12s ease infinite;
-      color: var(--text-light);
+      color: var(--text-primary);
       min-height: 100vh;
+      transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
     }
 
     /* Navbar */
@@ -52,183 +85,121 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: var(--bg-mid);
+      background: var(--nav-bg);
       padding: 1rem 1.5rem;
-      border-radius: 0 0 1.5rem 1.5rem;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border-radius: 0 0 var(--nav-radius) var(--nav-radius);
+      box-shadow: 0 5px 15px var(--shadow);
       position: sticky;
       top: 0;
       z-index: 100;
-      transition: background 0.3s ease, backdrop-filter 0.3s ease;
+      transition: background var(--transition-speed) ease, backdrop-filter var(--transition-speed) ease;
     }
 
-    .logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 1px;
-}
+    .logo { display:flex; align-items:center; gap:8px; font-weight:700; font-size:1.1rem; letter-spacing:1px; color:var(--text-primary); }
+    .logo img { width:70px; height:40px; object-fit:cover; border-radius:8px; }
 
-.logo img {
-  width: 70px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 8px; /* optional, looks nicer */
+    .nav-left { display:flex; align-items:center; gap:1rem; }
+    .nav-links { display:flex; gap:1rem; align-items:center; }
+    .nav-links a { color: var(--text-primary); text-decoration:none; padding:0.4rem 0.6rem; border-radius:0.5rem; transition: color 0.2s, background 0.2s, transform 0.12s; font-weight:500; }
+    .nav-links a:hover { color: var(--text-muted); transform: translateY(-2px); }
 
-}
-
-    /* Nav links container */
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--text-light);
-      text-decoration: none;
-      padding: 0.4rem 0.6rem;
-      border-radius: 0.5rem;
-      transition: color 0.2s, background 0.2s, transform 0.12s;
-      font-weight: 500;
-    }
-
-    .nav-links a:hover {
-      color: var(--text-muted);
-      transform: translateY(-2px);
-    }
-
-    /* Hamburger button */
-    .hamburger {
-	 padding: 0 !important;
-      background: transparent;
-	box-shadow: none;
-      display: none; /* hidden on desktop */
+    /* Theme toggle & controls */
+    .controls { display:flex; gap:0.6rem; align-items:center; }
+    .theme-toggle {
+      background: none;
       border: none;
+      color: var(--text-primary);
       cursor: pointer;
+      transition: transform var(--transition-speed), color var(--transition-speed);
       width: 42px;
       height: 36px;
-      position: relative;
-      z-index: 120;
-	  
-	  
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:6px;
     }
+    .theme-toggle:focus { outline: 3px solid rgba(245,166,35,0.18); }
+    .theme-toggle:hover { transform: rotate(12deg); color: var(--accent); }
 
-    .hamburger .bar {
-      display: block;
-      width: 100%;
-      height: 3px;
-      margin: 6px 0;
-      background: var(--text-light);
-      border-radius: 3px;
-      transition: transform 0.25s ease, opacity 0.25s ease;
-    }
+    /* Hamburger button */
+    .hamburger { padding:0 !important; background:transparent; box-shadow:none; display:none; border:none; cursor:pointer; width:42px; height:36px; position:relative; z-index:120; }
+    .hamburger .bar { display:block; width:100%; height:3px; margin:6px 0; background: var(--text-primary); border-radius:3px; transition: transform 0.25s ease, opacity 0.25s ease; }
 
     /* Mobile menu (hidden by default) */
-    .mobile-menu {
-      display: none;
-      position: absolute;
-      right: 1.5rem;
-      top: calc(100% + 10px);
-      background: rgba(18, 23, 34, 0.98);
-      border-radius: 12px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.45);
-      overflow: hidden;
-      min-width: 180px;
-      padding: 0.5rem 0;
-      transition: opacity 0.18s ease, transform 0.18s ease;
-    }
+    .mobile-menu { display:none; position:absolute; right:1.5rem; top:calc(100% + 10px); background: var(--menu-bg); border-radius:12px; box-shadow: 0 8px 30px var(--shadow); overflow:hidden; min-width:180px; padding:0.5rem 0; transition: opacity 0.18s ease, transform 0.18s ease; }
+    .mobile-menu a { display:block; padding:0.75rem 1rem; color: var(--text-primary); text-decoration:none; font-weight:600; }
+    .mobile-menu a:hover { background: rgba(0,0,0,0.03); color: var(--text-muted); }
 
-    .mobile-menu a {
-      display: block;
-      padding: 0.75rem 1rem;
-      color: var(--text-light);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .mobile-menu a:hover { background: rgba(255,255,255,0.02); color: var(--text-muted); }
-
-    /* Show hamburger + hide inline links on small screens */
     @media (max-width: 880px) {
-      .nav-links { display: none; }
-      .hamburger { display: block; }
-      nav { padding: 0.75rem 1rem; }
+      .nav-links { display:none; }
+      .hamburger { display:block; }
+      nav { padding:0.75rem 1rem; }
     }
 
-    /* If mobile menu is open */
-    .mobile-menu.show {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .mobile-menu.show { display:block; opacity:1; transform: translateY(0); }
 
-    main {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 4rem 2rem;
-    }
+    main { flex:1; display:flex; justify-content:center; align-items:center; padding:4rem 2rem; }
 
-    /* About Section */
     section.about-section {
-      background: rgba(18, 23, 34, 0.9);
+      background: var(--card-bg);
       border-radius: 1.5rem;
       max-width: 900px;
       width: 100%;
       padding: 3rem 2rem;
       text-align: left;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 15px var(--shadow);
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
+      color: var(--text-primary);
     }
+    section.about-section.visible { opacity:1; transform: translateY(0); }
 
-    section.about-section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .about-section h2 { font-size:2rem; margin-bottom:1rem; text-align:center; }
+    .about-section p { color: var(--text-muted); margin-bottom:1.5rem; line-height:1.6; max-width:700px; margin-left:auto; margin-right:auto; }
 
-    .about-section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
+    .about-cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:2rem; margin-top:2rem; }
+    .card { background: var(--page-bg-solid); border-radius:1rem; padding:2rem; box-shadow: 0 4px 15px var(--shadow); text-align:left; transition: transform 0.3s ease, box-shadow 0.3s ease; color:var(--text-primary); }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px var(--shadow); }
 
-    .about-section p { color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto; }
+    footer { 
+	text-align:center; padding:2rem; color:var(--text-muted); border-top: 1px solid rgba(0,0,0,0.12);
+	border-top: none;
+	}
 
-    .about-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
-
-    .card { background: var(--bg-dark); border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: left; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
-
-    footer { text-align: center; padding: 2rem; color: var(--text-muted); border-top: 1px solid #333; }
-
-    /* Accessibility focus styles */
-    .hamburger:focus { outline: 3px solid rgba(245,166,35,0.18); border-radius: 6px; }
-
+    /* transitions for elements */
+    body, nav, section, .card, footer { transition: background var(--transition-speed) ease, color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; }
   </style>
 </head>
 <body>
   <nav>
-    <div class="logo"><img src="Pictures\Logo.png"> - About</div>
-
-    <!-- Desktop links -->
-    <div class="nav-links" aria-hidden="false">
-      <a href="index.html#projects">My Projects</a>
-      <a href="index.html">Home</a>
-      <a href="contact.html">Contact</a>
+    <div class="nav-left">
+      <div class="logo"><img src="Pictures/Logo.png" alt="Logo"> - About</div>
     </div>
 
-    <!-- Hamburger (right side) -->
-    <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-      <span class="bar" id="bar1"></span>
-      <span class="bar" id="bar2"></span>
-      <span class="bar" id="bar3"></span>
-    </button>
+    <div class="controls">
+      <!-- Desktop links -->
+      <div class="nav-links" aria-hidden="false">
+        <a href="index.html#projects">My Projects</a>
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <!-- Theme toggle -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme (light/dark)">
+        <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <!-- default icon (will be replaced by JS on load) -->
+          <path d="M21.64 13a1 1 0 0 0-1.05-1.29 8 8 0 1 1-8.3-8.3A1 1 0 0 0 11 2.36a10 10 0 1 0 10.64 10.64z"/>
+        </svg>
+      </button>
+
+      <!-- Hamburger (right side) -->
+      <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <span class="bar" id="bar1"></span>
+        <span class="bar" id="bar2"></span>
+        <span class="bar" id="bar3"></span>
+      </button>
+    </div>
 
     <!-- Mobile dropdown menu -->
     <div class="mobile-menu" id="mobileMenu" role="menu" aria-hidden="true">
@@ -272,6 +243,7 @@
   </footer>
 
   <script>
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Fade-in on scroll
@@ -286,14 +258,12 @@
     }, { threshold: 0.2 });
     observer.observe(about);
 
-    // Navbar blur on scroll
+    // Navbar blur on scroll (now uses CSS variables)
     window.addEventListener("scroll", () => {
       const nav = document.querySelector("nav");
       if (window.scrollY > 50) {
-        nav.style.background = "rgba(18, 23, 34, 0.9)";
         nav.style.backdropFilter = "blur(6px)";
       } else {
-        nav.style.background = "var(--bg-mid)";
         nav.style.backdropFilter = "none";
       }
     });
@@ -305,11 +275,10 @@
     function setAria(open) {
       hamburger.setAttribute('aria-expanded', String(open));
       mobileMenu.setAttribute('aria-hidden', String(!open));
-      if (open) hamburger.setAttribute('aria-label', 'Close menu');
-      else hamburger.setAttribute('aria-label', 'Open menu');
+      hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     }
 
-    hamburger.addEventListener('click', (e) => {
+    hamburger.addEventListener('click', () => {
       const isOpen = mobileMenu.classList.toggle('show');
       setAria(isOpen);
 
@@ -357,6 +326,66 @@
       if (e.key === 'Escape' && mobileMenu.classList.contains('show')) {
         mobileMenu.classList.remove('show');
         setAria(false);
+      }
+    });
+
+    /* ---------------------------
+       Theme toggle logic
+       --------------------------- */
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+
+    // Utility: set icons (SVG paths). Keep them small and accessible.
+    function setLightIcon() {
+      themeIcon.innerHTML = '<path d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z" />';
+    }
+
+    function setDarkIcon() {
+      themeIcon.innerHTML = '<path d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M3.36,17L5.12,13.23C5.26,14 5.53,14.78 5.95,15.5C6.37,16.24 6.91,16.86 7.5,17.37L3.36,17M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M20.64,17L16.5,17.36C17.09,16.85 17.62,16.22 18.04,15.5C18.46,14.77 18.73,14 18.87,13.21L20.64,17M12,22L9.59,18.56C10.33,18.83 11.14,19 12,19C12.82,19 13.63,18.83 14.37,18.56L12,22Z"/>';
+    }
+
+
+
+
+    // Determine initial theme:
+    const savedTheme = localStorage.getItem('theme'); // 'light' | 'dark' or null
+    if (savedTheme) {
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        setLightIcon();
+      } else {
+        document.body.classList.remove('light-mode');
+        setDarkIcon();
+      }
+    } else {
+      // respect system preference if no saved preference
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      if (prefersLight) {
+        document.body.classList.add('light-mode');
+        setLightIcon();
+      } else {
+        setDarkIcon();
+      }
+    }
+
+    // Toggle handler
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      const isLight = document.body.classList.contains('light-mode');
+      if (isLight) {
+        setLightIcon();
+        localStorage.setItem('theme', 'light');
+      } else {
+        setDarkIcon();
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // Allow Enter/Space to toggle when focused
+    themeToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        themeToggle.click();
       }
     });
   </script>
