@@ -382,7 +382,9 @@ body {
     .projects-section p {
       color: var(--text-muted);
       max-width: 700px;
+	  max-height: 65px;
       margin: 0 auto 2rem;
+	  padding-bottom:80px;
     }
 
     .projects-grid {
@@ -414,9 +416,12 @@ body {
 	  overflow: hidden;
 }
 
-.project .wip img {
-	  width: 100%;
-	  height: 100%;
+	.project .wip img {
+	  display: block;
+	  margin-left: auto;
+	  margin-right: auto;
+	  width: 90%;
+	  height: 90%;
 	  object-fit: fill;        /* ensures image fills container without distortion */
 }
 	
