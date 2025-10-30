@@ -31,11 +31,11 @@
 	  --page-bg-solid: #f5f5f7;
 	  --nav-bg: rgba(8, 119, 194,0.7); 
 	  --nav-color: white;
-	  --card-bg: rgba(8, 119, 194,0.7);
+	  --card-bg: #f5f5f7;
 	  --menu-bg: rgba(245, 166, 35,0.9);
 	  --accent: #f5a623;
-	  --text-primary: #ffffff;
-	  --text-muted: #ffffff;
+	  --text-primary: white;
+	  --text-muted: black;
 	  --shadow: rgba(0,0,0,0.12);
 	}
 
@@ -47,13 +47,16 @@
 	  color: var(--nav-color) !important;
 	}
 
-	.light-mode footer {
-		
+	.light-mode footer, .about-section {
+	
+	  --text-primary: black;
 	  color: black;
 	}
 
 	.light-mode .card {
 	  background-color: rgba(245, 166, 35,0.8);
+	  --text-primary: white;
+      --text-muted: white;
 	}
 
     * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth;
