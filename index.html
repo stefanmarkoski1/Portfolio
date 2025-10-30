@@ -11,17 +11,127 @@
   <title>Stefan Markoski - Portfolio</title>
   <style>
   
-  body {
-  margin: 0;
-  padding: 0;
-}
-    :root {
-      --bg-dark: #0b0e13;
-      --bg-mid: #121722;
-      --accent: #f5a623;
-      --text-light: #ffffff;
-      --text-muted: #a1a1a1;
+  
+
+body {
+	  background: var(--bg);
+      min-height: 100vh;
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+      color: var(--text-primary);
+	  color: var(--text-light);
+	  transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+	  margin: 0;
+	  padding: 0;
+	 
     }
+	 
+    
+	 :root {
+      /* dark theme defaults */
+      --bg: linear-gradient(-45deg, #0b0e13, #121722, #1a2130, #f5a62333);
+      --page-bg-solid: #0b0e13;
+      --nav-bg: rgba(18,23,34,0.95);
+      --menu-bg: rgba(18,23,34,0.98);
+      --accent: rgba(245, 166, 35,0.9);
+      --text-primary: #ffffff;
+      --text-muted: #a1a1a1;
+      --shadow: rgba(0, 0, 0, 0.3);
+      --transition-speed: 0.3s;
+      --nav-radius: 1.5rem;
+	  --bg-dark: #0b0e13;
+      --bg-mid: #121722;
+      --text-light: #ffffff;
+    }
+	
+	
+
+	
+	 /* light mode overrides */
+	   .light-mode {
+	  --bg: var(--page-bg-solid); 
+	  --nav-bg: rgba(8, 119, 194,0.7); 
+	  --page-bg-solid: #f5f5f7;
+	  --nav-color: white;
+	  --menu-bg: rgba(245, 166, 35,0.9);
+	  --accent: #f5a623;
+      --text-muted: white;
+	  --text-light: black;
+	  --text-muted:black;
+	  --shadow: rgba(0,0,0,0.12);
+	  
+	}
+	
+	
+	.light-mode .projects-section h2, .projects-section p.intro, .project, .projects-section p{
+	 	  color: white !important;
+
+	}
+	
+	.light-mode  .project{
+	 	  background-color: rgba(211,211,211, 0.2);
+
+	}
+	
+	
+
+	.light-mode nav,
+	.light-mode nav a,
+	.light-mode .nav-brand,
+	.light-mode .logo,
+	.light-mode .nav-links a i {
+	  color: white !important;
+	  --text-light: white;
+
+	}
+	
+	.light-mode .projects-section {
+    background: rgba(8, 119, 194,0.7);
+	}
+
+	.light-mode footer {
+		
+	  color: black;
+	}
+	
+	.light-mode nav {
+		
+	  background-color: rgba(8, 119, 194,0.7);
+	}
+
+	
+	.light-mode .mobile-menu   {
+	  background-color: rgba(245, 166, 35,0.9);
+	}
+
+
+	
+	/* Theme toggle & controls */
+    .controls { display:flex; gap:0.6rem; align-items:center; }
+    .theme-toggle {
+	  background: rgba(0,0,0,0.0); /* dark overlay so yellow gradient doesn't show */
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: transform var(--transition-speed), color var(--transition-speed);
+      width: 42px;
+      height: 36px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:6px;
+	  padding:0;
+	  transition: transform var(--transition-speed), color var(--transition-speed), background var(--transition-speed);
+
+	  }
+
+   
+    
+	.theme-toggle:hover { 
+	  transform: rotate(12deg); 
+	  color: var(--accent); 
+	  background: rgba(255,255,255,0.0); 
+}
 
     * {
       box-sizing: border-box;
@@ -37,12 +147,7 @@
 	100% { background-position: 0% 50%; }
 	}
 	
-    body {
-		background: linear-gradient(-45deg, #0b0e13, #121722, #1a2130, #f5a62333);
-		background-size: 400% 400%;
-		animation: gradientMove 12s ease infinite;
-		color: var(--text-light);
-    }
+  
 
    /* Navbar */
     nav {
@@ -225,7 +330,7 @@
 
     .btn {
       background: var(--accent);
-      color: #000;
+      color: white;
       border: none;
       padding: 0.8rem 1.5rem;
       border-radius: 10px;
@@ -407,12 +512,22 @@
 <nav>
     <div class="logo"><img src="Pictures\Logo.png"> - Portfolio</div>
 
+    <div class="controls">
+
     <!-- Desktop links -->
     <div class="nav-links" aria-hidden="false">
       <a href="#projects">My Projects</a>
       <a href="about.html">About Me</a>
       <a href="contact.html">Contact</a>
     </div>
+	
+	<!-- Theme toggle -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme (light/dark)">
+        <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <!-- default icon (will be replaced by JS on load) -->
+          <path d="M21.64 13a1 1 0 0 0-1.05-1.29 8 8 0 1 1-8.3-8.3A1 1 0 0 0 11 2.36a10 10 0 1 0 10.64 10.64z"/>
+        </svg>
+      </button>
 
     <!-- Hamburger (right side) -->
     <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
@@ -420,6 +535,9 @@
       <span class="bar" id="bar2"></span>
       <span class="bar" id="bar3"></span>
     </button>
+	
+	</div>
+
 
     <!-- Mobile dropdown menu -->
     <div class="mobile-menu" id="mobileMenu" role="menu" aria-hidden="true">
@@ -536,11 +654,11 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener("scroll", () => {
     const nav = document.querySelector("nav");
     if (window.scrollY > 50) {
-      nav.style.background = "rgba(18, 23, 34, 0.9)";
+nav.style.background = "var(--nav-bg)";
       nav.style.backdropFilter = "blur(6px)";
       nav.style.transition = "background 0.3s ease, backdrop-filter 0.3s ease";
     } else {
-      nav.style.background = "var(--bg-mid)";
+nav.style.background = "var(--nav-bg)";
       nav.style.backdropFilter = "none";
     }
   });
@@ -621,6 +739,66 @@ window.addEventListener('resize', () => {
   scrollBtn.addEventListener("click", function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+  
+  /* ---------------------------
+       Theme toggle logic
+       --------------------------- */
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+
+    // Utility: set icons (SVG paths). Keep them small and accessible.
+    function setLightIcon() {
+      themeIcon.innerHTML = '<path d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z" />';
+    }
+
+    function setDarkIcon() {
+      themeIcon.innerHTML = '<path d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M3.36,17L5.12,13.23C5.26,14 5.53,14.78 5.95,15.5C6.37,16.24 6.91,16.86 7.5,17.37L3.36,17M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M20.64,17L16.5,17.36C17.09,16.85 17.62,16.22 18.04,15.5C18.46,14.77 18.73,14 18.87,13.21L20.64,17M12,22L9.59,18.56C10.33,18.83 11.14,19 12,19C12.82,19 13.63,18.83 14.37,18.56L12,22Z"/>';
+    }
+
+
+
+
+    // Determine initial theme:
+    const savedTheme = localStorage.getItem('theme'); // 'light' | 'dark' or null
+    if (savedTheme) {
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        setLightIcon();
+      } else {
+        document.body.classList.remove('light-mode');
+        setDarkIcon();
+      }
+    } else {
+      // respect system preference if no saved preference
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      if (prefersLight) {
+        document.body.classList.add('light-mode');
+        setLightIcon();
+      } else {
+        setDarkIcon();
+      }
+    }
+
+    // Toggle handler
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      const isLight = document.body.classList.contains('light-mode');
+      if (isLight) {
+        setLightIcon();
+        localStorage.setItem('theme', 'light');
+      } else {
+        setDarkIcon();
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // Allow Enter/Space to toggle when focused
+    themeToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        themeToggle.click();
+      }
+    });
 </script>
 
 </body>
