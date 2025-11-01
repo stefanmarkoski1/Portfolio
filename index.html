@@ -94,7 +94,10 @@ body {
 	  color: black;
 	}
 	
-	
+	.light-mode nav {
+		
+	  background-color: rgba(7, 79, 146,0.7); 
+	}
 
 	
 	.light-mode .mobile-menu   {
@@ -628,8 +631,6 @@ body {
   
 
   <script>
-  document.addEventListener("touchstart", () => {}, {passive: true});
-
 document.addEventListener("DOMContentLoaded", function() {
   // 1. Fade-in PFP on load
   const pfp = document.querySelector('.fade-in-load');
@@ -807,6 +808,12 @@ window.addEventListener('resize', () => {
         themeToggle.click();
       }
     });
+	
+	const btn = document.getElementById("theme-toggle");
+btn.addEventListener("click", () => {
+  btn.classList.add("animating");
+  setTimeout(() => btn.classList.remove("animating"), 500);
+});
 </script>
 
 </body>
