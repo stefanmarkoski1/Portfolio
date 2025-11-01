@@ -628,6 +628,8 @@ body {
   
 
   <script>
+  document.addEventListener("touchstart", () => {}, {passive: true});
+
 document.addEventListener("DOMContentLoaded", function() {
   // 1. Fade-in PFP on load
   const pfp = document.querySelector('.fade-in-load');
