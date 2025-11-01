@@ -140,21 +140,39 @@
     .mobile-menu.show { display:block; opacity:1; transform: translateY(0); }
 
     main { flex:1; display:flex; justify-content:center; align-items:center; padding:4rem 2rem; }
+	
+	
+	
+	
+	
 
-    section.about-section {
-      background: var(--card-bg);
-      border-radius: 1.5rem;
-      max-width: 900px;
-      width: 100%;
-      padding: 3rem 2rem;
-      text-align: left;
-      box-shadow: 0 4px 15px var(--shadow);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      color: var(--text-primary);
-    }
-    section.about-section.visible { opacity:1; transform: translateY(0); }
+    .fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* About section specific styles */
+section.about-section {
+  background: var(--card-bg);
+  border-radius: 1.5rem;
+  max-width: 900px;
+  width: 100%;
+  padding: 3rem 2rem;
+  text-align: left;
+  box-shadow: 0 4px 15px var(--shadow);
+  color: var(--text-primary);
+}
+	
+	
+	
+	
+	
 
     .about-section h2 { font-size:2rem; margin-bottom:1rem; text-align:center; }
     .about-section p { color: var(--text-muted); margin-bottom:1.5rem; line-height:1.6; max-width:700px; margin-left:auto; margin-right:auto; }
@@ -269,25 +287,30 @@
     </section>
   </main>
 
-  <footer>
-    © <span id="year"></span> Stefan Markoski — All Rights Reserved
-  </footer>
+  <footer class="fade-in">
+  © <span id="year"></span> Stefan Markoski — All Rights Reserved
+</footer>
 
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Fade-in on scroll
-    const about = document.querySelector('.about-section');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    observer.observe(about);
+	
+	
+   const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+// Observe all fade-in elements (about section + footer)
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+	
+	
 
     // Navbar blur on scroll (now uses CSS variables)
     window.addEventListener("scroll", () => {
