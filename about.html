@@ -14,7 +14,7 @@
       /* dark theme defaults */
       --bg: linear-gradient(-45deg, #0b0e13, #121722, #1a2130, #f5a62333);
       --page-bg-solid: #0b0e13;
-      --nav-bg: rgba(18,23,34,0.95);
+      --nav-bg: rgba(18,23,34,0.7);
       --card-bg: rgba(18,23,34,0.9);
       --menu-bg: rgba(18,23,34,0.98);
       --accent: #f5a623;
@@ -29,7 +29,7 @@
     .light-mode {
 	  --bg: var(--page-bg-solid);
 	  --page-bg-solid: #f5f5f7;
-	  --nav-bg: rgba(8, 119, 194,0.7); 
+	  --nav-bg: rgba(7, 79, 146,0.7); 
 	  --nav-color: white;
 	  --card-bg: #f5f5f7;
 	  --menu-bg: rgba(245, 166, 35,0.9);
@@ -162,6 +162,29 @@
     .about-cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:2rem; margin-top:2rem; }
     .card { background: var(--page-bg-solid); border-radius:1rem; padding:2rem; box-shadow: 0 4px 15px var(--shadow); text-align:left; transition: transform 0.3s ease, box-shadow 0.3s ease; color:var(--text-primary); }
     .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px var(--shadow); }
+	
+	  .CVbutton button{
+	  margin-top:50px;
+	  background-color: rgba(245, 166, 35,0.9);
+      color: white;
+      font-weight: bold;
+	  padding: 0.9rem 1rem;      
+	  border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .CVbutton button:hover {
+      background: #ffbb33;
+      transform: translateY(-2px);
+    }
+	
+	.CVbutton
+	{
+		text-align:center;
+	}
+
 
     footer { 
 	text-align:center; padding:2rem; color:var(--text-muted); border-top: 1px solid rgba(0,0,0,0.12);
@@ -181,8 +204,8 @@
     <div class="controls">
       <!-- Desktop links -->
       <div class="nav-links" aria-hidden="false">
+	    <a href="index.html">Home</a>
         <a href="index.html#projects">My Projects</a>
-        <a href="index.html">Home</a>
         <a href="contact.html">Contact</a>
       </div>
 
@@ -204,8 +227,8 @@
 
     <!-- Mobile dropdown menu -->
     <div class="mobile-menu" id="mobileMenu" role="menu" aria-hidden="true">
+	  <a href="index.html" role="menuitem">Home</a>
       <a href="index.html#projects" role="menuitem">My Projects</a>
-      <a href="index.html" role="menuitem">Home</a>
       <a href="contact.html" role="menuitem">Contact</a>
     </div>
   </nav>
@@ -221,6 +244,8 @@
         Outside of work, I explore design trends, experiment with new technologies, and build personal projects that push my skills further.
         I believe in lifelong learning and constantly improving to deliver work that makes an impact.
       </p>
+	  
+
 
       <div class="about-cards">
         <div class="card">
@@ -236,6 +261,9 @@
           <p>Bachelor of Science in Information Technology — Digital Business Analytics.</p>
         </div>
       </div>
+	  
+	  <div class = "CVbutton"><a href="assets/CV.pdf" download><button>Download CV</button></a></div>
+
     </section>
   </main>
 
