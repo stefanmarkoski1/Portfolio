@@ -127,10 +127,9 @@ body {
 
    
     
-	.theme-toggle:hover { 
-	  transform: rotate(12deg); 
-	  color: var(--accent); 
-	  background: rgba(255,255,255,0.0); 
+	.theme-toggle:hover:not(:active) {
+  transform: rotate(12deg);
+  color: var(--accent);
 }
 
     * {
@@ -513,6 +512,15 @@ body {
 	  }
 
     }
+	
+	@media (hover: none) {
+  .theme-toggle:hover,
+  .theme-toggle:active,
+  .hamburger:hover,
+  .hamburger:active {
+    transform: none !important;
+    color: inherit !important;
+  }
 </style>
 </head>
 
@@ -808,12 +816,6 @@ window.addEventListener('resize', () => {
         themeToggle.click();
       }
     });
-	
-	const btn = document.getElementById("theme-toggle");
-btn.addEventListener("click", () => {
-  btn.classList.add("animating");
-  setTimeout(() => btn.classList.remove("animating"), 500);
-});
 </script>
 
 </body>
